@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Strength Checker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div id="particles"></div>
+  <div class="glow-grid"></div>
+
+  <div class="wrapper">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="badge">🔒 Security Tool</div>
+      <h1>Password Strength Checker</h1>
+      <p class="subtitle">Analyze your password's security in real time — see crack time, entropy score, and actionable recommendations.</p>
+    </header>
+
+    <!-- Password Input Card -->
+    <div class="card">
+      <div class="card-title">Analyze Password</div>
+      <div class="input-group">
+        <input type="password" id="password-input" placeholder="Type your password here…"
+          autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Password input">
+        <button class="toggle-btn" id="toggle-btn" aria-label="Toggle visibility" title="Show / Hide">👁</button>
+      </div>
+
+      <!-- Strength Bar -->
+      <div class="strength-section">
+        <div class="strength-header">
+          <span class="strength-label">Strength</span>
+          <span class="strength-value" id="strength-text">—</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="bar-fill"></div>
+        </div>
+        <div class="strength-levels" id="strength-pips">
+          <div class="level-pip"></div>
+          <div class="level-pip"></div>
+          <div class="level-pip"></div>
+          <div class="level-pip"></div>
+          <div class="level-pip"></div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Strength %</div>
+          <div class="stat-value" id="stat-percent">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Security Score</div>
+          <div class="stat-value" id="stat-score">0/100</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Crack Time</div>
+          <div class="stat-value" id="stat-crack" style="font-size:0.85rem;">—</div>
+        </div>
+      </div>
+
+      <!-- Reset -->
+      <div class="reset-row">
+        <button class="btn btn-danger btn-full" id="reset-btn">✕ Clear</button>
+      </div>
+    </div>
+
+    <!-- Checklist Card -->
+    <div class="card">
+      <div class="card-title">Requirements</div>
+      <div class="checklist">
+        <div class="check-item" id="check-length"><div class="check-icon" id="icon-length">✕</div> Min. 8 characters</div>
+        <div class="check-item" id="check-upper"><div class="check-icon" id="icon-upper">✕</div> Uppercase letter</div>
+        <div class="check-item" id="check-lower"><div class="check-icon" id="icon-lower">✕</div> Lowercase letter</div>
+        <div class="check-item" id="check-number"><div class="check-icon" id="icon-number">✕</div> Number</div>
+        <div class="check-item" id="check-special"><div class="check-icon" id="icon-special">✕</div> Special character</div>
+      </div>
+    </div>
+
+    <!-- Recommendations Card -->
+    <div class="card">
+      <div class="card-title">Security Recommendations</div>
+      <div id="recommendations">
+        <div class="rec-item"><span class="rec-icon">›</span> Enter a password above to see personalized security recommendations.</div>
+      </div>
+    </div>
+
+    <!-- Generator Card -->
+    <div class="card">
+      <div class="card-title">Password Generator</div>
+
+      <div class="slider-group">
+        <div class="slider-header"><span>Password length</span><span id="len-display">16</span></div>
+        <input type="range" id="gen-length" min="8" max="32" value="16" step="1">
+      </div>
+
+      <div class="gen-options">
+        <label class="gen-option"><input type="checkbox" id="opt-upper" checked><label for="opt-upper">Uppercase (A–Z)</label></label>
+        <label class="gen-option"><input type="checkbox" id="opt-lower" checked><label for="opt-lower">Lowercase (a–z)</label></label>
+        <label class="gen-option"><input type="checkbox" id="opt-numbers" checked><label for="opt-numbers">Numbers (0–9)</label></label>
+        <label class="gen-option"><input type="checkbox" id="opt-symbols" checked><label for="opt-symbols">Symbols (!@#…)</label></label>
+      </div>
+
+      <div class="gen-output">
+        <span id="gen-password-display" class="empty">Click "Generate" to create a password</span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="gen-btn">⚡ Generate</button>
+        <button class="btn btn-secondary" id="copy-gen-btn">⎘ Copy</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="toast">✓ Copied to clipboard!</div>
+
+  <!-- Scripts (order matters) -->
+  <script src="analyzer.js"></script>
+  <script src="generator.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
